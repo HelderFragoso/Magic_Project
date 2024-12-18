@@ -12,7 +12,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] private bool canMove = true;
     private SpriteRenderer spriteRenderer;
 
-    public global::System.Boolean CanMove { get => canMove; set => canMove = value; }
+    public bool CanMove { get => canMove; set => canMove = value; }
 
     void Start()
     {

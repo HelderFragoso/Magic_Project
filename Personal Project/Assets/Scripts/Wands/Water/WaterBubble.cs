@@ -10,12 +10,13 @@ public class WaterBubble : MonoBehaviour
     public float _force;
     public int _dmg;
     public float _timeToDie;
+    public List<BaseEnemy> _enemyList = new List<BaseEnemy>();
 
 
 
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         _mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -24,12 +25,26 @@ public class WaterBubble : MonoBehaviour
         _rb.velocity = new Vector2(direction.x, direction.y).normalized * _force;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+
+
+        yield return new WaitForSeconds(_timeToDie);
+        foreach(BaseEnemy enemy in _enemyList)
+        {
+            var _enemyRigid = enemy.GetComponent<Rigidbody2D>();
+
+            enemy.transform.SetParent(null);
+            _enemyRigid.bodyType = RigidbodyType2D.Dynamic;
+
+            enemy.enabled = true;
+        }
+        Destroy(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(this.gameObject, _timeToDie);
+        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -38,20 +53,16 @@ public class WaterBubble : MonoBehaviour
         if (enemyDetected != null)
         {
             enemyDetected.TakeDamage(_dmg);
-            StartCoroutine(Keepnap(enemyDetected));
+            _enemyList.Add(enemyDetected);
+
+            var _enemyRigid = enemyDetected.GetComponent<Rigidbody2D>();
+            enemyDetected.enabled = false;
+
+            _enemyRigid.bodyType = RigidbodyType2D.Kinematic;
+            enemyDetected.transform.SetParent(this.gameObject.transform);
+            enemyDetected.transform.position = this.gameObject.transform.position;
         }
     }
 
-    IEnumerator Keepnap(BaseEnemy enemy) 
-    {
-        
-        //enemy.CanMove = false;
-
-        enemy.transform.parent = this.gameObject.transform;
-        yield return new WaitForSeconds(1);
-        enemy.transform.parent = null;
-
-        //enemy.CanMove = true;
-
-    }
+    
 }
