@@ -120,8 +120,8 @@ TextureImporter:
       name: rock_wand_0
       rect:
         serializedVersion: 2
-        x: 448
-        y: 176
+        x: 672
+        y: 240
         width: 160
         height: 864
       alignment: 0
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 292c4f8fd8b17a64fbfbb7ab62bc9334
-      internalID: -267921006
+      spriteID: 8cc4ac77ea262004f873381a6ee6e546
+      internalID: -1231527381
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rock_wand_0: -267921006
+      rock_wand_0: -1231527381
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

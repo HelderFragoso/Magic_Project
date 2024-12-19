@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class BaseWand : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Sprite _fireWandFirst;
     [SerializeField] private Sprite _waterWandFirst;
+    [SerializeField] private Sprite _rockWand;
     [SerializeField] private GameObject _offSet;
     [SerializeField] private ParticleSystem _flamePrefab;
     [SerializeField] private Auto _fireAutoPrefab;
     [SerializeField] private WaterBubble _waterAutoPrefab;
-    //[SerializeField] private float _launchVelocity;
 
-    private ParticleSystem _flame;
-    private Auto _fireAutoInstance;
-    private WaterBubble _waterAutoInstance;
+
+    [Header("Bools")]
     [SerializeField] private bool _canShoot = true;
     [SerializeField] private bool _canShootFlame = true;
     [SerializeField] private bool _canShootWater = true;
     [SerializeField] private bool _canShootWaterJet = true;
     [SerializeField] private bool _isFire = true;
     [SerializeField] private bool _isWater = false;
+    [SerializeField] private bool _isRock = false;
+
+
     private bool _isItDual = true;
+    private ParticleSystem _flame;
+    private Auto _fireAutoInstance;
+    private WaterBubble _waterAutoInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +40,10 @@ public class BaseWand : MonoBehaviour
     {
         Attack();
         ChangeSprite();
+        ChangeWand();
     }
 
-    protected virtual void ChangeSprite()
+    private void ChangeSprite()
     {
         if (Input.GetKeyDown(KeyCode.C) && _isFire == true && _isItDual == true)
         {
@@ -51,6 +58,16 @@ public class BaseWand : MonoBehaviour
             _isWater = false;
         }
     }
+
+    private void ChangeWand()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GetComponent<SpriteRenderer>().sprite = _rockWand;
+            _isRock= true;
+        }
+    }
+
 
     protected virtual void Attack()
     {

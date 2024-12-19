@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e57354779bb35204c96b7bf203235a82
-      internalID: 2102842131
+      spriteID: 816fd5e0ad15b7e43b4d698af2304c8a
+      internalID: -1022852966
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fire_wand_0: 2102842131
+      fire_wand_0: -1022852966
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
