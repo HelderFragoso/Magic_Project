@@ -12,6 +12,8 @@ public class BaseWand : MonoBehaviour
     [SerializeField] private ParticleSystem _flamePrefab;
     [SerializeField] private Auto _fireAutoPrefab;
     [SerializeField] private WaterBubble _waterAutoPrefab;
+    [SerializeField] private RockAuto _rockAutoPrefab;
+    [SerializeField] private Boulder _boulderPrefab;
 
 
     [Header("Bools")]
@@ -19,6 +21,8 @@ public class BaseWand : MonoBehaviour
     [SerializeField] private bool _canShootFlame = true;
     [SerializeField] private bool _canShootWater = true;
     [SerializeField] private bool _canShootWaterJet = true;
+    [SerializeField] private bool _canShootPebble = true;
+    [SerializeField] private bool _canShootBoulder = true;
     [SerializeField] private bool _isFire = true;
     [SerializeField] private bool _isWater = false;
     [SerializeField] private bool _isRock = false;
@@ -28,6 +32,8 @@ public class BaseWand : MonoBehaviour
     private ParticleSystem _flame;
     private Auto _fireAutoInstance;
     private WaterBubble _waterAutoInstance;
+    private RockAuto _rockAutoInstance;
+    private Boulder _boulderInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +67,21 @@ public class BaseWand : MonoBehaviour
 
     private void ChangeWand()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GetComponent<SpriteRenderer>().sprite = _fireWandFirst;
+            _isFire = true;
+            _isItDual = true;
+            _isWater = false;
+            _isRock = false;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             GetComponent<SpriteRenderer>().sprite = _rockWand;
+            _isWater = false;
+            _isFire = false;
+            _isItDual= false;
             _isRock= true;
         }
     }
@@ -96,9 +114,22 @@ public class BaseWand : MonoBehaviour
             }
 
         }
+        else if(_isRock == true) 
+        { 
+            if(Input.GetKey(KeyCode.Mouse0) && _canShootPebble == true)
+            {
+                StartCoroutine(RockAutoAttack());
+            }
+
+            if(Input.GetKeyDown(KeyCode.Mouse1) && _canShootBoulder == true)
+            {
+                StartCoroutine(BoulderAttack());
+            }
+        }
        
     }
 
+    #region Coroutine Attacks
     IEnumerator FireAutoAttack() 
     {
         _canShoot = false;
@@ -127,4 +158,23 @@ public class BaseWand : MonoBehaviour
 
         _canShootWater = true;
     }
+
+    IEnumerator RockAutoAttack() 
+    {
+        _canShootPebble = false;
+        _rockAutoInstance = Instantiate(_rockAutoPrefab, _offSet.transform.position, _rockAutoPrefab.transform.rotation);
+        yield return new WaitForSeconds(0.2f);
+        _canShootPebble = true;
+    }
+
+    IEnumerator BoulderAttack() 
+    {
+        _canShootBoulder = false;
+        _boulderInstance = Instantiate(_boulderPrefab, _offSet.transform.position, _boulderPrefab.transform.rotation);
+
+        yield return new WaitForSeconds(2);
+        _canShootBoulder = true;
+    }
+
+    #endregion
 }

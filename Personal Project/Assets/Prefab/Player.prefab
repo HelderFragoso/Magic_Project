@@ -184,7 +184,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &3900708465898763300
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1136597601, guid: 2bb6776993ce1354680cdb54b1ba4a75, type: 3}
+  m_Sprite: {fileID: -1017904840, guid: 2bb6776993ce1354680cdb54b1ba4a75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -328,15 +328,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7698f831d93f86449650eae24a2fe18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireWandFirst: {fileID: 1136597601, guid: 2bb6776993ce1354680cdb54b1ba4a75, type: 3}
-  _waterWandFirst: {fileID: 1595657803, guid: 4da7c2453494dd546945b4e4e71878b1, type: 3}
+  _fireWandFirst: {fileID: -1017904840, guid: 2bb6776993ce1354680cdb54b1ba4a75, type: 3}
+  _waterWandFirst: {fileID: 718068451, guid: 4da7c2453494dd546945b4e4e71878b1, type: 3}
+  _rockWand: {fileID: -1231527381, guid: 24039b8b7f20aa34589eb76d0146c410, type: 3}
   _offSet: {fileID: 1580408747262518427}
   _flamePrefab: {fileID: 539443137997353695, guid: 88724622ba68d2a4db794f0b3e76e194, type: 3}
   _fireAutoPrefab: {fileID: 994605986682001297, guid: 7b09480ba00ea1e44927a16fbe08f48e, type: 3}
   _waterAutoPrefab: {fileID: 7705230601766268286, guid: e60dbcb29165de744a7cc4cc7253284a, type: 3}
+  _rockAutoPrefab: {fileID: 8509247843957232629, guid: 5743eb0d6044ac344865acdd6146351b, type: 3}
+  _boulderPrefab: {fileID: 1967172208594095663, guid: ac3ec922e02359e40a7598dcb304f93e, type: 3}
   _canShoot: 1
   _canShootFlame: 1
   _canShootWater: 1
   _canShootWaterJet: 1
+  _canShootPebble: 1
+  _canShootBoulder: 1
   _isFire: 1
   _isWater: 0
+  _isRock: 0

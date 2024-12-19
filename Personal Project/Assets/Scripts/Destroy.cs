@@ -6,8 +6,13 @@ public class Destroy : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        BaseEnemy enemyDetected = collision.gameObject.GetComponent<BaseEnemy>();
-        if (enemyDetected != null)
+        var other = collision.gameObject.GetComponent<BoxCollider2D>();
+        //var other2 = collision.gameObject.GetComponent<CircleCollider2D>();
+        if (other.CompareTag("Pebble")) 
+        {
+
+        }
+        else if (other != null) 
         {
             Destroy(this.gameObject);
         }
