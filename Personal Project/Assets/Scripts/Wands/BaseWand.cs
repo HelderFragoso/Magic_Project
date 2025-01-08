@@ -11,6 +11,8 @@ public class BaseWand : MonoBehaviour
     [SerializeField] private GameObject _offSet;
     [SerializeField] private ParticleSystem _flamePrefab;
     [SerializeField] private Auto _fireAutoPrefab;
+
+    [SerializeField] private ParticleSystem _waterJetPrefab;
     [SerializeField] private WaterBubble _waterAutoPrefab;
     [SerializeField] private RockAuto _rockAutoPrefab;
     [SerializeField] private Boulder _boulderPrefab;
@@ -30,6 +32,8 @@ public class BaseWand : MonoBehaviour
 
     private bool _isItDual = true;
     private ParticleSystem _flame;
+
+    private ParticleSystem _waterJet;
     private Auto _fireAutoInstance;
     private WaterBubble _waterAutoInstance;
     private RockAuto _rockAutoInstance;
@@ -103,9 +107,9 @@ public class BaseWand : MonoBehaviour
         }
         else if(_isWater == true) 
         {
-            if (Input.GetKey(KeyCode.Mouse1) && _canShootFlame == true)
+            if (Input.GetKey(KeyCode.Mouse1) && _canShootWaterJet == true)
             {
-                StartCoroutine(FlameAttack());
+                StartCoroutine(WaterJet());
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && _canShootWater == true)
@@ -123,7 +127,7 @@ public class BaseWand : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Mouse1) && _canShootBoulder == true)
             {
-                StartCoroutine(BoulderAttack());
+                Coroutine t = StartCoroutine(BoulderAttack());
             }
         }
        
@@ -157,6 +161,15 @@ public class BaseWand : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         _canShootWater = true;
+    }
+
+    IEnumerator WaterJet()
+    {
+        _canShootWaterJet = false;
+        _waterJet = Instantiate(_waterJetPrefab, _offSet.transform.position, _waterJetPrefab.transform.rotation);
+        yield return new WaitForSeconds(0.1f);
+
+        _canShootWaterJet = true;
     }
 
     IEnumerator RockAutoAttack() 

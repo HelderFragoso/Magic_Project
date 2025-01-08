@@ -442,6 +442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1588368980788876116, guid: 3760760bc3755e04c8d22423afd43fa6, type: 3}
+      propertyPath: _waterJetPrefab
+      value: 
+      objectReference: {fileID: 9202655616290893015, guid: 7ea897437d6de6e4489ad4e29c893f8b, type: 3}
     - target: {fileID: 3405284709226848975, guid: 3760760bc3755e04c8d22423afd43fa6, type: 3}
       propertyPath: m_RootOrder
       value: 2
